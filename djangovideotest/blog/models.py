@@ -205,7 +205,7 @@ class BlogPage(Page):
         # FieldPanel('some_document'),
         # FieldPanel("some_product"),
         # RestrictedFieldPanel('some_page'),
-        # FieldPanel("content"),
+        FieldPanel("content"),
         # UtilityPanel('<span class="editor-reminder">Some important notice to display</span>'),
         # UtilityPanel(
         #     '<h5><a target="_blank" href="{{url}}" style="color: blue; text-decoration: underline;">News Article Editors Guide</a></h5>',
