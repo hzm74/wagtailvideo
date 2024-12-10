@@ -38,7 +38,7 @@ from wagtail.search import index
 #                 self.bound_field.initial=self.request.user
         
 class BlogIndex(Page):
-    parent_page_types = ['home.HomePage']
+    # parent_page_types = ['home.HomePage']
     # subpage_types = ['blog.BlogPage', 'blog.VideoPage']
     max_count = 1
 
