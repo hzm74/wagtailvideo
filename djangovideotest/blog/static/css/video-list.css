@@ -1,0 +1,179 @@
+/* video list container */
+div.video-list-container {
+    margin-bottom: 4rem;
+}
+div.video-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+/* styles while waiting for player to finish loading */
+div[data-player-loading=true].video-list-container div.youtube-card {
+    cursor: wait;
+}
+@keyframes spin {0% {transform: rotate(0deg);} 100% {transform: rotate(360deg);}}
+div[data-player-loading=true].video-list-container div.card-video::before {
+    content: "";
+    position: absolute;
+    opacity: .8;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid red;
+    border-top: 8px solid transparent;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+    height: 3em;
+    width: 3em;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+div[data-player-loading=true].video-list-container div.card-video>svg.youtube-logo {
+    display: none;
+}
+/* styles while loading extra cards - pulsate image */
+div[data-cards-loading=true].video-list-container div.card-video>img.card-video-thumbnail {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: wait;
+    background-color: currentcolor;
+    opacity: .5;  
+    animation: placeholder-glow 2s ease-in-out infinite;
+}
+/* hide cards with no video-id */
+div.video-list div.youtube-card[data-video-id=""] {
+    display: none;
+}
+/* card width & wrap settings */
+div.video-list div.youtube-card {
+    flex-basis: 275px;
+    /* take out these next two lines to make fixed width */
+    flex-grow: 1;
+    max-width: 325px;
+}
+/* card styles only applied after player loaded */
+div[data-player-loading=false].video-list-container div.youtube-card {
+    cursor: pointer;
+}
+div[data-player-loading=false].video-list-container div.youtube-card:hover>div.card-video>svg.youtube-logo {
+    opacity: 1;
+}
+/* video thumbnail section */
+div.video-list div.card-video {
+    position: relative;
+}
+div.video-list div.card-video>img {
+    width: 100%;
+    min-height: 200px;
+    border-top-left-radius: var(--bs-card-inner-border-radius);
+    border-top-right-radius: var(--bs-card-inner-border-radius);
+}
+div.video-list div.card-video:not(.placeholder)>svg {
+    width: 5rem;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: .8;
+    transition: opacity 0.2s ease-in-out;
+}
+/* card body styles */
+div.video-list div.card-body {
+    padding-bottom: 0;
+}
+/* extra bottom padding when body has no rich text block */
+div.video-list div.card-body:has(:not(p[data-block-key])) {
+    padding-bottom: 1em;
+}
+div.video-list div.card-body>p.card-title {
+    margin-bottom: 0;
+}
+/* rich text line spacing */
+div.video-list div.card-body>p[data-block-key] {
+    line-height: 1.2;
+}
+div.video-list p.card-subtle-text {
+    color: var(--bs-secondary-text-emphasis);
+}
+
+/* video player modal */
+
+/* modal background (covers screen) */
+div#video-modal {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000bf;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999; /* make sure it is top object */
+}
+div#video-modal.show {
+    display: block;
+}
+/* video player card */
+div#video-modal>div.card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    max-height: 72%;
+    aspect-ratio: 100 / 56.5;
+    transform: translate(-50%, -50%);
+}
+div#video-modal>div.card>div.title-bar {
+    text-align: right;
+}
+div#video-modal>div.card>div.title-bar>button.btn-close {
+    padding: 0.7rem;
+}
+iframe#card-video-iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 0 0 var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius);
+}
+/* previous/next arrows */
+div#video-modal>div.adjacent-arrow {
+    position: fixed;
+    top: 50%;
+    cursor: pointer;
+}
+div#video-modal>div.adjacent-arrow.prev {
+    right: 85%;
+    transform: translateY(-50%) scaleX(-1);
+} 
+div#video-modal>div.adjacent-arrow.next {
+    left: 85%;
+    transform: translateY(-50%);
+} 
+div#video-modal>div.adjacent-arrow>svg {
+    height: clamp(2.25rem, 1.486rem + 2.444vw, 5rem);
+    width: clamp(2.25rem, 1.486rem + 2.444vw, 5rem);
+}
+div#video-modal>div.adjacent-arrow:hover {
+    color: #e9e8e8;
+}
+div#video-modal>div.adjacent-arrow {
+    color: #b9c8d5;
+}
+div#video-modal>div.adjacent-arrow[data-target=""] {
+    display: none;
+}
+nav.video-list-pagination li.page-item[data-target-page] {
+    cursor: pointer;
+}
+nav.video-list-pagination a.page-link>svg {
+    width: 1rem;
+    height: 1rem;
+    vertical-align: -2px;
+}
+nav.video-list-pagination a.page-link.prev>svg {
+    transform: scaleX(-1);
+}
