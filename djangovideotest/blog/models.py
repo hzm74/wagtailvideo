@@ -15,6 +15,8 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Orderable, Page
 from wagtail.search import index
 
+#test
+
 # from blocks.models import *
 # from core.forms.restricted_panels_admin_forms import \
 #     RestrictedPanelsAdminPageForm
