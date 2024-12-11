@@ -184,7 +184,7 @@ class BlogPage(Page):
         #     '<b>Word Count:</b> {{wordcount}}', {'wordcount': 'wordcount'},
         #     style = 'margin-bottom: 2em;display: block;background-color: antiquewhite;padding: 1em;border-radius: 1em;'
         # ),
-        # FieldPanel('owner'),
+        FieldPanel('owner'),
         # RegexPanel('some_slug'),
         # FieldPanel('some_text_area', widget=ImportTextAreaWidget(file_type_filter=".csv, .tsv")),
         # MultiFieldPanel(
@@ -202,7 +202,7 @@ class BlogPage(Page):
         # RestrictedFieldPanel('some_choice_field'),
         # RestrictedFieldPanel('some_rich_text'),
         # RestrictedFieldPanel('some_image'),
-        # FieldPanel('some_document'),
+        FieldPanel('some_document'),
         # FieldPanel("some_product"),
         # RestrictedFieldPanel('some_page'),
         FieldPanel("content"),
@@ -267,7 +267,7 @@ class BlogPage(Page):
         #         ]
         #     },
         # ),
-        # FieldPanel('some_text_area'),
+        FieldPanel('some_text_area'),
         # UtilityPanel(
         #     '{{file_reader}}',
         #     {
@@ -277,13 +277,13 @@ class BlogPage(Page):
         # M2MChooserPanel("categories"),
     ]
 
-    # promote_panels = [
-    #     MultiFieldPanel([
-    #         FieldPanel('slug', widget=SlugInput),
-    #         FieldPanel('seo_title', widget=CharLimitTextInput(min=15, max=70, enforced=True)),
-    #         FieldPanel('search_description', widget=CharLimitTextArea(min=50, max=160, enforced=False)),
-    #     ], _('For search engines')),
-    # ]
+    promote_panels = [
+        MultiFieldPanel([
+            FieldPanel('slug', widget=SlugInput),
+            # FieldPanel('seo_title', widget=CharLimitTextInput(min=15, max=70, enforced=True)),
+            # FieldPanel('search_description', widget=CharLimitTextArea(min=50, max=160, enforced=False)),
+        ], _('For search engines')),
+    ]
 
     # api_fields = [
     #     'spacecrafts',
